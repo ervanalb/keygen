@@ -130,3 +130,32 @@ module key_blank(outline_points,
         key_emboss(emboss_left_adj, emboss_depth, true, thickness, emboss_left_paths);
     }
 }
+
+function key_code_to_heights(code, depth_table) = [for(i=[0:len(code)-1]) depth_table[search(code[i], "0123456789")[0]]];
+
+module key_bitting_cutter(flat, angle, tool_height) {
+    polygon([[-0.5 * flat, 0],
+            [0.5 * flat, 0],
+            [0.5 * flat + tan(0.5 * angle) * tool_height, tool_height],
+            [0.5 * flat - tan(0.5 * angle) * tool_height, tool_height]]);
+}
+
+module key_bitting(heights,
+                   locations,
+                   flat,
+                   angle=100,
+                   cutter_width=5,
+                   cutter_height=5) {
+    // Rotate the cutting tool to the proper orientation
+    rotate(-90, [0, 0, 1]) rotate(90, [1, 0, 0])
+        // Union together a handful of trapezoids
+        // that comprise the cuts
+        union() {
+            for(i=[0:len(heights)-1]) {
+                // Move to the proper location and height
+                translate([locations[i], heights[i]])
+                    linear_extrude(height=cutter_width, center=true)
+                        key_bitting_cutter(flat, angle, cutter_height);
+            }
+        }
+}
