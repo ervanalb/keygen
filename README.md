@@ -13,3 +13,7 @@ cut depths and locations.
 5. Use the provided OpenSCAD functions `key_code_to_heights`,
 `key_blank` and `key_bitting` to generate a 3D model of your key.
 6. Send the key to be 3D printed.
+
+## Music
+
+There is no keygen music yet, in the meantime, try [here](https://soundcloud.com/dualtrax/sets/orion-keygen-music)
