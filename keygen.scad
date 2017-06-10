@@ -1,21 +1,9 @@
 $inf=1000;
 $eps=.01;
 
-/*
-BROKEN
-function key_make_complex_polygon(paths, reversed) = [
-    [for (a=paths, b=a) b],
-    [for(i=[0:len(reversed)])
-        reversed[i]
-        ? [for(e=[len(paths[i])-1:-1:0]) e]
-        : [for(e=[0:len(paths[i])-1]) e]
-    ]
-];
-*/
-
-function key_move_and_scale(points, scale, offset) = [
-    for(p=points) [scale[0] * (p[0] + offset[0]),
-                   scale[1] * (p[1] + offset[1])]
+function key_move(points, offset) = [
+    for(p=points) [p[0] + offset[0],
+                   p[1] + offset[1]]
 ];
 
 module key_outline(outline_points, thickness, outline_paths=undef) {
@@ -70,7 +58,7 @@ module key_warding_cutter(warding, blade_height, cutter_radius, left) {
 }
 
 module key_emboss(emboss_points, emboss_depth, left, thickness, emboss_paths=undef) {
-    translate([(left ? 1 : -1) * 0.5*thickness, 0, 0]) rotate(-90, [0, 1, 0]) rotate(-90, [0, 0, 1]) // Translate and rotate into the correct soot
+    translate([(left ? -1 : 1) * 0.5*thickness, 0, 0]) rotate(-90, [0, 1, 0]) rotate(-90, [0, 0, 1]) // Translate and rotate into the correct soot
         linear_extrude(height=2*emboss_depth, center=true) // Extrude the key outline
             polygon(points=emboss_points, paths=emboss_paths); // Draw the outline
 }
@@ -85,9 +73,8 @@ module key_blank(outline_points,
                 bow_thickness=0,
                 emboss_depth=.1,
                 plug_diameter=0,
-                scale=[1/96, -1/96],
                 offset=[0, 0],
-                cutter_radius=.25) {
+                cutter_radius=18) {
 
     // Find the bounding box of the warding
     warding_min = [min([for(e=warding) e[0]]), min([for(e=warding) e[1]])];
@@ -95,20 +82,20 @@ module key_blank(outline_points,
 
     // Apply the given offset to the outline,
     // holes, and emboss
-    outline_adj = key_move_and_scale(outline_points, scale, offset);
-    emboss_left_adj = key_move_and_scale(emboss_left_points, scale, offset);
-    emboss_right_adj = key_move_and_scale(emboss_right_points, scale, offset);
+    outline_adj = key_move(outline_points, offset);
+    emboss_left_adj = key_move(emboss_left_points, offset);
+    emboss_right_adj = key_move(emboss_right_points, offset);
 
     // Move the warding profile
     // so that it is centered in X
     // and non-negative in Y
     warding_offset = [-0.5 * (warding_min[0] + warding_max[0]),
-                      -warding_max[1]];
-    warding_adj = key_move_and_scale(warding, scale, warding_offset);
+                      -warding_min[1]];
+    warding_adj = key_move(warding, warding_offset);
 
     // Infer various key properties
-    thickness = (bow_thickness == 0) ? abs(scale[0] * (warding_max[0] - warding_min[0])) : bow_thickness;
-    blade_height = abs(scale[1] * (warding_max[1] - warding_min[1]));
+    thickness = (bow_thickness == 0) ? abs(warding_max[0] - warding_min[0]) : bow_thickness;
+    blade_height = abs(warding_max[1] - warding_min[1]);
 
     // Cut out the warding milling artifacts
     // from the bow
@@ -129,7 +116,7 @@ module key_blank(outline_points,
                 translate([0, $inf/2, 0])
                     cube([$inf, $inf, $inf], center=true);
 
-                key_blade(warding_adj, plug_diameter, $inf);
+                key_blade(warding_adj, plug_diameter);
             }
         }
         // Draw the milling wheels that cut the warding
