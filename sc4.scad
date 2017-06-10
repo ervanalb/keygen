@@ -1,5 +1,5 @@
 use <keygen.scad>
-include <sc4_polygons.scad>
+include <sc4.gen.scad>
 
 key_blank(outline_points,
           warding_points,

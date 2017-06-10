@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 # openscad.py
 
@@ -240,7 +240,7 @@ class OpenSCAD( inkex.Effect ):
             help="The active tab when Apply was pressed" )
 
         self.OptionParser.add_option('--smoothness', dest='smoothness',
-            type='float', default=float( 0.2 ), action='store',
+            type='float', default=float( 0.02 ), action='store',
             help='Curve smoothing (less for more)' )
 
         self.OptionParser.add_option('--fname', dest='fname',
