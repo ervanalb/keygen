@@ -13,7 +13,7 @@ module key_outline(outline_points, thickness, outline_paths=undef) {
 }
 
 module key_blade(warding, plug_diameter=0) {
-    // Draw the blade to infinity in -Y
+    // Draw the blade to infinity in Y
     // optionally intersected with the plug cylinder
     // to round the bottom
     intersection() {
@@ -25,7 +25,7 @@ module key_blade(warding, plug_diameter=0) {
         if(plug_diameter > 0) {
             // Draw infinite cylinder in -Y
             translate([0, 0, 0.5*plug_diameter]) rotate(90, [1, 0, 0])
-                cylinder(r=0.5*plug_diameter, h=$inf, $fn=$fn ? 4*$fn : 48);
+                cylinder(r=0.5*plug_diameter, h=$inf, center=true, $fn=$fn ? 4*$fn : 48);
         }
     }
 }
@@ -57,34 +57,35 @@ module key_warding_cutter(warding, blade_height, cutter_radius, left) {
                 }
 }
 
-module key_emboss(emboss_points, emboss_depth, left, thickness, emboss_paths=undef) {
+module key_engrave(engrave_points, engrave_depth, left, thickness, engrave_paths=undef) {
     translate([(left ? -1 : 1) * 0.5*thickness, 0, 0]) rotate(-90, [0, 1, 0]) rotate(-90, [0, 0, 1]) // Translate and rotate into the correct soot
-        linear_extrude(height=2*emboss_depth, center=true) // Extrude the key outline
-            polygon(points=emboss_points, paths=emboss_paths); // Draw the outline
+        linear_extrude(height=2*engrave_depth, center=true) // Extrude the key outline
+            polygon(points=engrave_points, paths=engrave_paths); // Draw the outline
 }
 
 module key_blank(outline_points,
                 warding,
                 outline_paths=undef,
-                emboss_right_points=[],
-                emboss_right_paths=undef,
-                emboss_left_points=[],
-                emboss_left_paths=undef,
+                engrave_right_points=[],
+                engrave_right_paths=undef,
+                engrave_left_points=[],
+                engrave_left_paths=undef,
                 bow_thickness=0,
-                emboss_depth=.1,
+                engrave_depth=.1,
                 plug_diameter=0,
                 offset=[0, 0],
-                cutter_radius=18) {
+                cutter_radius=18,
+                milling_offset=0) {
 
     // Find the bounding box of the warding
     warding_min = [min([for(e=warding) e[0]]), min([for(e=warding) e[1]])];
     warding_max = [max([for(e=warding) e[0]]), max([for(e=warding) e[1]])];
 
     // Apply the given offset to the outline,
-    // holes, and emboss
+    // holes, and engrave
     outline_adj = key_move(outline_points, offset);
-    emboss_left_adj = key_move(emboss_left_points, offset);
-    emboss_right_adj = key_move(emboss_right_points, offset);
+    engrave_left_adj = key_move(engrave_left_points, offset);
+    engrave_right_adj = key_move(engrave_right_points, offset);
 
     // Move the warding profile
     // so that it is centered in X
@@ -113,7 +114,7 @@ module key_blank(outline_points,
             // when the intersection happens
             union() {
                 // Fill +Y half-space
-                translate([0, $inf/2, 0])
+                translate([0, $inf/2+milling_offset, 0])
                     cube([$inf, $inf, $inf], center=true);
 
                 key_blade(warding_adj, plug_diameter);
@@ -121,13 +122,16 @@ module key_blank(outline_points,
         }
         // Draw the milling wheels that cut the warding
         if(cutter_radius != 0) {
-            key_warding_cutter(warding_adj, blade_height, cutter_radius, false);
-            key_warding_cutter(warding_adj, blade_height, cutter_radius, true);
+            translate([0, milling_offset, 0])
+                union() {
+                    key_warding_cutter(warding_adj, blade_height, cutter_radius, false);
+                    key_warding_cutter(warding_adj, blade_height, cutter_radius, true);
+                }
         }
 
-        // Draw the embossing
-        key_emboss(emboss_right_adj, emboss_depth, false, thickness, emboss_right_paths);
-        key_emboss(emboss_left_adj, emboss_depth, true, thickness, emboss_left_paths);
+        // Draw the engraveing
+        key_engrave(engrave_right_adj, engrave_depth, false, thickness, engrave_right_paths);
+        key_engrave(engrave_left_adj, engrave_depth, true, thickness, engrave_left_paths);
     }
 }
 
