@@ -1,7 +1,7 @@
 # keygen
 Tools for generating physical keys.
 
-![152698](doc/key.png "Key in OpenSCAD")
+![Key in OpenSCAD](doc/key.png "152698")
 
 ## How it Works
 1. Get some nice pictures of the side and tip of your key.
