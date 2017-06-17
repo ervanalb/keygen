@@ -21,14 +21,17 @@ STL_OBJ =
 
 OBJECTS = $(POLYGON_OBJ) $(STL_OBJ)
 
-# Assembler, compiler, and linker flags
 POLYFLAGS  = 
 SCADFLAGS  = 
 
 # Targets
-all: $(STL_OBJ)
+all: all_stl
 poly: $(POLY_OBJ)
+$(STL_DIR)/key_blanks.d:
+	BUILD_DIR=$(STL_DIR) bin/parse.py $(SCAD_SRC)
 clean:
-	-rm -f $(OBJECTS)
+	-rm -f $(POLY_DIR)/*.gen.scad $(STL_DIR)/*.stl
 $(POLY_DIR)/%.gen.scad: $(SVG_DIR)/%.svg
 	$(POLY) $(POLYFLAGS) --fname $@ $<
+
+include $(STL_DIR)/key_blanks.d

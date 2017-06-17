@@ -2,11 +2,11 @@ use <keygen.scad>
 include <schlage.gen.scad>
 
 module schlage_classic(bitting="",
-                       outline_name="5pin",
-                       warding_name="c") {
+                       outline_name="5-pin",
+                       warding_name="C") {
 
-    outlines_k = ["5pin",
-                  "6pin"];
+    outlines_k = ["5-pin",
+                  "6-pin"];
     outlines_v = [[outline_5pin_points, outline_5pin_paths,
                    [-outline_5pin_points[92][0], -outline_5pin_points[98][1]],
                    engrave_5pin_points,
@@ -15,16 +15,16 @@ module schlage_classic(bitting="",
                    [-outline_6pin_points[92][0], -outline_6pin_points[98][1]],
                    engrave_6pin_points,
                    engrave_6pin_paths]];
-    wardings_k = ["c",
-                  "ce",
-                  "e",
-                  "ef",
-                  "f",
-                  "fg",
-                  "h",
-                  "j",
-                  "k",    
-                  "l"];
+    wardings_k = ["C",
+                  "CE",
+                  "E",
+                  "EF",
+                  "F",
+                  "FG",
+                  "H",
+                  "J",
+                  "K",
+                  "L"];
     wardings_v = [warding_c_points,
                   warding_ce_points,
                   warding_e_points,
@@ -68,7 +68,8 @@ module schlage_classic(bitting="",
     }
 }
 
+// Defaults
 bitting="";
-outline="5pin";
-warding="c";
+outline="5-pin";
+warding="C";
 schlage_classic(bitting, outline, warding);
