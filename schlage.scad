@@ -67,3 +67,5 @@ module schlage_classic(bitting="",
         key_bitting(heights, cut_locations, .7874);
     }
 }
+
+schlage_classic("25467");

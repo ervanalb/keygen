@@ -17,7 +17,7 @@ module key_blade(warding, plug_diameter=0) {
     // optionally intersected with the plug cylinder
     // to round the bottom
     intersection() {
-        rotate(90, [1, 0, 0])
+        rotate(180, [0, 0, 1]) rotate(90, [1, 0, 0])
             linear_extrude(height=2*$inf, center=true)
                 polygon(warding);
 
@@ -42,7 +42,7 @@ module key_x_line(length) {
 
 module key_warding_cutter(warding, blade_height, cutter_radius, left) {
     neg = left ? -1 : 1;
-    translate([neg * -cutter_radius, 0, 0])
+    translate([neg * cutter_radius, 0, 0])
         rotate_extrude($fn=$fn ? 4*$fn : 48)
             translate([neg * cutter_radius, 0])
                 difference() {
