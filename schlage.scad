@@ -51,17 +51,19 @@ module schlage_classic(bitting="",
     heights = key_code_to_heights(bitting, depth_table);
 
     difference() {
-        key_blank(outline_points,
-                  warding_points,
-                  outline_paths=outline_paths,
-                  engrave_right_points=engrave_points,
-                  engrave_right_paths=engrave_paths,
-                  engrave_left_points=engrave_points,
-                  engrave_left_paths=engrave_paths,
-                  offset=offset,
-                  plug_diameter=12.7);
+        if($children == 0) {
+            key_blank(outline_points,
+                      warding_points,
+                      outline_paths=outline_paths,
+                      engrave_right_points=engrave_points,
+                      engrave_right_paths=engrave_paths,
+                      engrave_left_points=engrave_points,
+                      engrave_left_paths=engrave_paths,
+                      offset=offset,
+                      plug_diameter=12.7);
+        } else {
+            children(0);
+        }
         key_bitting(heights, cut_locations, .7874);
     }
 }
-
-schlage_classic("25467");
