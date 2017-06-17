@@ -5,6 +5,8 @@ module schlage_classic(bitting="",
                        outline_name="5-pin",
                        warding_name="C") {
 
+    name = "Schlage Classic";
+
     outlines_k = ["5-pin",
                   "6-pin"];
     outlines_v = [[outline_5pin_points, outline_5pin_paths,

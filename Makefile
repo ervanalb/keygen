@@ -25,13 +25,15 @@ POLYFLAGS  =
 SCADFLAGS  = 
 
 # Targets
-all: all_stl
+all: stl
 poly: $(POLY_OBJ)
-$(STL_DIR)/key_blanks.d:
-	BUILD_DIR=$(STL_DIR) bin/parse.py $(SCAD_SRC)
+$(STL_DIR)/%.d: $(SCAD_DIR)/%.scad
+	BUILD_DIR=$(STL_DIR) bin/parse.py $<
 clean:
-	-rm -f $(POLY_DIR)/*.gen.scad $(STL_DIR)/*.stl
+	-rm -f $(POLY_DIR)/*.gen.scad $(STL_DIR)/*.stl $(STL_DIR)/*.d
 $(POLY_DIR)/%.gen.scad: $(SVG_DIR)/%.svg
 	$(POLY) $(POLYFLAGS) --fname $@ $<
 
-include $(STL_DIR)/key_blanks.d
+include $(patsubst $(SCAD_DIR)/%.scad,$(STL_DIR)/%.d,$(SCAD_SRC))
+
+stl: $(STL_OBJ)
