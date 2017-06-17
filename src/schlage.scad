@@ -68,4 +68,7 @@ module schlage_classic(bitting="",
     }
 }
 
-schlage_classic("25467");
+bitting="";
+outline="5pin";
+warding="c";
+schlage_classic(bitting, outline, warding);
