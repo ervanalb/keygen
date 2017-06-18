@@ -8,6 +8,7 @@ SCAD_DIR = src
 SVG_DIR = resources
 POLY_DIR = build
 STL_DIR = build
+JSON_DIR = build
 
 # Files to include
 SVG_SRC  = $(wildcard $(SVG_DIR)/*.svg)
@@ -17,9 +18,10 @@ SCAD_SRC  = $(SCAD_DIR)/schlage.scad
 POLY_OBJ = $(patsubst $(SVG_DIR)/%.svg,$(POLY_DIR)/%.gen.scad,$(SVG_SRC))
 
 # Generated STL
-STL_OBJ = 
+STL_OBJ = # populated in .d files
 
-OBJECTS = $(POLYGON_OBJ) $(STL_OBJ)
+# Generated JSON files
+JSON_OBJ = $(patsubst $(SCAD_DIR)/%.scad,$(JSON_DIR)/%.json,$(SCAD_SRC))
 
 POLYFLAGS  = 
 SCADFLAGS  = 
@@ -28,9 +30,11 @@ SCADFLAGS  =
 all: stl
 poly: $(POLY_OBJ)
 $(STL_DIR)/%.d: $(SCAD_DIR)/%.scad
-	bin/parse.py $< $@
+	bin/parse.py $< $(STL_DIR)/$*.d $(JSON_DIR)/$*.json
+$(JSON_DIR)/%.json: $(SCAD_DIR)/%.scad
+	bin/parse.py $< $(STL_DIR)/$*.d $(JSON_DIR)/$*.json
 clean:
-	-rm -f $(POLY_DIR)/*.gen.scad $(STL_DIR)/*.stl $(STL_DIR)/*.d
+	-rm -f $(POLY_DIR)/*.gen.scad $(STL_DIR)/*.stl $(STL_DIR)/*.d $(JSON_DIR)/*.json
 $(POLY_DIR)/%.gen.scad: $(SVG_DIR)/%.svg
 	$(POLY) $(POLYFLAGS) --fname $@ $<
 

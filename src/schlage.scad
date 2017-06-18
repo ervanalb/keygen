@@ -7,6 +7,11 @@ module schlage_classic(bitting="",
 
     name = "Schlage Classic";
 
+    /*
+        Bitting is specified from bow to tip, 0-9, with 0 being the shallowest cut and 9 being the deepest.
+        Example: 25363
+    */
+
     outlines_k = ["5-pin",
                   "6-pin"];
     outlines_v = [[outline_5pin_points, outline_5pin_paths,
