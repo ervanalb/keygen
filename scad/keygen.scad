@@ -135,7 +135,7 @@ module key_blank(outline_points,
     }
 }
 
-function key_code_to_heights(code, depth_table) = [for(i=_enum(code)) depth_table[search(code[i], "0123456789")[0]]];
+function key_code_to_heights(code, depth_table) = [for(i=key_enum(code)) depth_table[search(code[i], "0123456789")[0]]];
 
 module key_bitting_cutter(flat, angle, tool_height) {
     polygon([[-0.5 * flat, 0],
@@ -155,7 +155,7 @@ module key_bitting(heights,
         // Union together a handful of trapezoids
         // that comprise the cuts
         union() {
-            for(i=_enum(heights)) {
+            for(i=key_enum(heights)) {
                 // Move to the proper location and height
                 translate([locations[i], heights[i]])
                     linear_extrude(height=cutter_width, center=true)
@@ -166,7 +166,7 @@ module key_bitting(heights,
 
 function key_lkup(ks, vs, k) = vs[search([k], [for(ki=ks) [ki]])[0]];
     
-function _enum(l) = len(l) > 0 ? [for(i=[0:len(l)-1]) i] : [];
+function key_enum(l) = len(l) > 0 ? [for(i=[0:len(l)-1]) i] : [];
 
 function _strcat(v, i, car, s) = (i==s ? v[i] : str(_strcat(v, i-1, car, s), str(car,v[i]) )); // from https://www.thingiverse.com/thing:202724
 
