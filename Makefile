@@ -1,7 +1,6 @@
 # Makefile for keygen
 
 # Executables
-SCAD = openscad
 POLY = PYTHONPATH=/usr/share/inkscape/extensions bin/paths2openscad.py
 
 SCAD_DIR = scad
@@ -20,7 +19,6 @@ POLY_OBJ = $(patsubst $(SVG_DIR)/%.svg,$(POLY_DIR)/%.gen.scad,$(SVG_SRC))
 JSON_OBJ = $(patsubst $(SCAD_DIR)/%.scad,$(JSON_DIR)/%.json,$(SCAD_SRC))
 
 POLYFLAGS  = 
-SCADFLAGS  = 
 
 # Targets
 all: $(JSON_DIR)/keys.json poly
