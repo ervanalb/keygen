@@ -30,7 +30,7 @@ All remaining arguments are passed to OpenSCAD.
 
 ### Examples
 
-```bin/keygen.py scad/schlage_classic.scad --bitting 25536 -o housekey.stl```
+```bin/keygen.py scad/kwikset.scad --bitting 25536 -o housekey.stl```
 
 ```bin/keygen.py scad/schlage_classic.scad -u 6-pin -w L -b 999999 -o all_section_bump_key.stl```
 
