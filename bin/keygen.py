@@ -6,7 +6,7 @@ import string
 import sys
 import subprocess
 
-parser = argparse.ArgumentParser(description='Generates keys', epilog='All remaining arguments are passed to OpenSCAD.')
+parser = argparse.ArgumentParser(description='Generates keys.', epilog='All remaining arguments are passed to OpenSCAD.')
 parser.add_argument("filename",
                     help="OpenSCAD source file for the key")
 parser.add_argument("-b", "--bitting", dest='bitting',
