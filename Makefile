@@ -11,7 +11,7 @@ STL_DIR = build
 
 # Files to include
 SVG_SRC  = $(wildcard $(SVG_DIR)/*.svg)
-SCAD_SRC  = $(wildcard $(SCAD_DIR)/*.scad)
+SCAD_SRC  = $(SCAD_DIR)/schlage.scad
 
 # Generated polygon files
 POLY_OBJ = $(patsubst $(SVG_DIR)/%.svg,$(POLY_DIR)/%.gen.scad,$(SVG_SRC))
@@ -28,7 +28,7 @@ SCADFLAGS  =
 all: stl
 poly: $(POLY_OBJ)
 $(STL_DIR)/%.d: $(SCAD_DIR)/%.scad
-	BUILD_DIR=$(STL_DIR) bin/parse.py $<
+	bin/parse.py $< $@
 clean:
 	-rm -f $(POLY_DIR)/*.gen.scad $(STL_DIR)/*.stl $(STL_DIR)/*.d
 $(POLY_DIR)/%.gen.scad: $(SVG_DIR)/%.svg
