@@ -149,15 +149,16 @@ module key_bitting(heights,
                    flat,
                    angle=100,
                    cutter_width=5,
-                   cutter_height=5) {
+                   cutter_height=5,
+                   angles=[]) {
     // Rotate the cutting tool to the proper orientation
     rotate(-90, [0, 0, 1]) rotate(90, [1, 0, 0])
         // Union together a handful of trapezoids
         // that comprise the cuts
         union() {
             for(i=key_enum(heights)) {
-                // Move to the proper location and height
-                translate([locations[i], heights[i]])
+                // Move to the proper location and height, and maybe rotate
+                translate([locations[i], heights[i]]) rotate(i >= len(angles) ? 0 : angles[i], [0, 1, 0])
                     linear_extrude(height=cutter_width, center=true)
                         key_bitting_cutter(flat, angle, cutter_height);
             }
