@@ -10,7 +10,7 @@ JSON_DIR = build
 
 # Files to include
 SVG_SRC  = $(wildcard $(SVG_DIR)/*.svg)
-SCAD_SRC  = $(SCAD_DIR)/schlage.scad
+SCAD_SRC  = $(SCAD_DIR)/schlage_classic.scad
 
 # Generated polygon files
 POLY_OBJ = $(patsubst $(SVG_DIR)/%.svg,$(POLY_DIR)/%.gen.scad,$(SVG_SRC))
