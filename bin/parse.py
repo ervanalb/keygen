@@ -8,8 +8,7 @@ import string
 import itertools
 
 scad_fn = sys.argv[1]
-d_fn = sys.argv[2]
-json_fn = sys.argv[3]
+json_fn = sys.argv[2]
 
 with open(scad_fn) as f:
     scad_text = f.read()
@@ -41,27 +40,9 @@ d = d.strip()
 os = json.loads(os)
 ws = json.loads(ws)
 
-def sanitize(s):
-    return "".join([c for c in s.lower() if c in string.ascii_lowercase + string.digits])
-
-all_keys = [(n, o, w) for o in os for w in ws]
-
-def stl_filename(n, o, w):
-    return "$(STL_DIR)/{n_s}_{o_s}_{w_s}.stl".format(n_s=sanitize(n), o_s=sanitize(o), w_s=sanitize(w))
-
-all_keys_makefile = ["{stl_fn}: {scad_fn} {deps}\n\t$(SCAD) $(SCADFLAGS) -D 'outline=\"{o}\"' -D 'warding=\"{w}\"' {scad_fn} -o $@"
-    .format(n=n, o=o, w=w,
-    scad_fn=scad_fn, stl_fn=stl_filename(n, o, w), deps=" ".join(["$(POLY_DIR)/{}".format(r) for r in poly_reqs]))
-    for (n, o, w) in all_keys]
-all_stl = [stl_filename(n, o, w) for (n, o, w) in all_keys]
-all_keys_makefile.append("STL_OBJ += {}".format(" \\\n ".join(all_stl)))
-
-with open(d_fn, "w") as f:
-    print("\n".join(all_keys_makefile), file=f
-)
-
 json_obj = {
     "name": n,
+    "filename": scad_fn,
     "description": d,
     "outlines": os,
     "wardings": ws
