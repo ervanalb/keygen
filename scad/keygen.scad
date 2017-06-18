@@ -141,7 +141,7 @@ module key_bitting_cutter(flat, angle, tool_height) {
     polygon([[-0.5 * flat, 0],
             [0.5 * flat, 0],
             [0.5 * flat + tan(0.5 * angle) * tool_height, tool_height],
-            [0.5 * flat - tan(0.5 * angle) * tool_height, tool_height]]);
+            [-0.5 * flat - tan(0.5 * angle) * tool_height, tool_height]]);
 }
 
 module key_bitting(heights,
