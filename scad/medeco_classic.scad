@@ -1,6 +1,5 @@
 use <keygen.scad>
-include <medeco.gen.scad>
-
+include <medeco.scad>
 
 module medeco_classic(bitting="",
                       outline_name="1515",
@@ -29,50 +28,6 @@ module medeco_classic(bitting="",
                   "1638",
                   "1644",
                   "1655"];
-    outlines_v = [[outline_a1515_points, outline_a1515_paths,
-                   [-outline_a1515_points[52][0], -outline_a1515_points[52][1]],
-                   engrave_a1515_points,
-                   engrave_a1515_paths],
-                  [outline_1515_points, outline_1515_paths,
-                   [-outline_1515_points[25][0], -outline_1515_points[25][1]],
-                   engrave_1515_points,
-                   engrave_1515_paths],
-                  [outline_a1517_points, outline_a1517_paths,
-                   [-outline_a1517_points[47][0], -outline_a1517_points[48][1]],
-                   engrave_a1517_points,
-                   engrave_a1517_paths],
-                  [outline_1517_points, outline_1517_paths,
-                   [-outline_1517_points[47][0], -outline_1517_points[48][1]],
-                   engrave_1517_points,
-                   engrave_1517_paths],
-                  [outline_1518_points, outline_1518_paths,
-                   [-outline_1518_points[40][0], -outline_1518_points[28][1]],
-                   engrave_1518_points,
-                   engrave_1518_paths],
-                  [outline_1542_points, outline_1542_paths,
-                   [-outline_1542_points[92][0], -outline_1542_points[98][1]],
-                   engrave_1542_points,
-                   engrave_1542_paths],
-                  [outline_1543_points, outline_1543_paths,
-                   [-outline_1543_points[48][0], -outline_1543_points[48][1]],
-                   engrave_1543_points,
-                   engrave_1543_paths],
-                  [outline_a1638_points, outline_a1638_paths,
-                   [-outline_a1638_points[64][0], -outline_a1638_points[68][1]],
-                   engrave_a1638_points,
-                   engrave_a1638_paths],
-                  [outline_1638_points, outline_1638_paths,
-                   [-outline_1638_points[64][0], -outline_1638_points[68][1]],
-                   engrave_1638_points,
-                   engrave_1638_paths],
-                  [outline_1644_points, outline_1644_paths,
-                   [-outline_1644_points[47][0], -outline_1644_points[43][1]],
-                   engrave_1644_points,
-                   engrave_1644_paths],
-                  [outline_1655_points, outline_1655_paths,
-                   [-outline_1655_points[48][0], -outline_1655_points[52][1]],
-                   engrave_1655_points,
-                   engrave_1655_paths]];
 
     wardings_k = ["1515",
                   "1517",
@@ -82,15 +37,6 @@ module medeco_classic(bitting="",
                   "1638",
                   "1644",
                   "1655"];
-
-    wardings_v = [warding_1515_points,
-                  warding_1517_points,
-                  warding_1518_points,
-                  warding_1542_points,
-                  warding_1543_points,
-                  warding_1638_points,
-                  warding_1644_points,
-                  warding_1655_points];
 
     outline_param = key_lkup(outlines_k, outlines_v, outline_name);
     outline_points = outline_param[0];
@@ -133,6 +79,6 @@ module medeco_classic(bitting="",
 
 // Defaults
 bitting="";
-outline="1638";
-warding="1638";
+outline="1515";
+warding="1515";
 medeco_classic(bitting, outline, warding);

@@ -40,7 +40,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="226.13746"
+     inkscape:cx="44.411022"
      inkscape:cy="558.8381"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -398,9 +398,10 @@
     <path
        style="opacity:0.47999998;fill:#00ff00;stroke:#231f20;stroke-width:0.08819442;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        d="m 135.58485,68.752691 c 0,-1.75835 -1.39647,-3.19772 -3.15193,-3.24937 -2.91454,-0.0855 -5.83029,-0.1289 -8.74606,-0.1289 -2.91575,0 -5.83131,0.0434 -8.74589,0.1289 -1.75564,0.0516 -3.15211,1.49102 -3.15211,3.24937 v 15.13624 c 0,1.75821 1.39647,3.19772 3.15211,3.24923 2.91458,0.0856 5.83014,0.12851 8.74589,0.12851 2.91577,0 5.83152,-0.0429 8.74592,-0.12851 h 1.4e-4 c 1.75546,-0.0515 3.15193,-1.49102 3.15193,-3.24923 v -5.54799 z"
-       id="path48822"
+       id="engrave_1638"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="scscsscsccscs" />
+       sodipodi:nodetypes="scscsscsccscs"
+       inkscape:label="#path48822" />
     <text
        y="182.97798"
        x="-81.356331"
