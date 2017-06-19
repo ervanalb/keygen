@@ -40,7 +40,7 @@ module side_bit_milling(cut_locations, bitting="") {
 
 module schlage_primus(bitting="",
                       outline_name="6-pin",
-                      warding_name="C") {
+                      warding_name="CP") {
 
     name = "Schlage Primus Classic";
 
@@ -64,26 +64,24 @@ module schlage_primus(bitting="",
 
     // TODO add primus keyways
 
-    wardings_k = ["C",
-                  "CE",
-                  "E",
-                  "EF",
-                  "F",
-                  "FG",
-                  "H",
-                  "J",
-                  "K",
-                  "L"];
-    wardings_v = [warding_c_points,
-                  warding_ce_points,
-                  warding_e_points,
-                  warding_ef_points,
-                  warding_f_points,
-                  warding_fg_points,
-                  warding_h_points,
-                  warding_j_points,
-                  warding_k_points,
-                  warding_l_points];
+    wardings_k = ["CP",
+                  "CEP",
+                  "EP",
+                  "EFP",
+                  "FP",
+                  "FGP",
+                  "HP",
+                  "JP",
+                  "LP"];
+    wardings_v = [warding_cp_points,
+                  warding_cep_points,
+                  warding_ep_points,
+                  warding_efp_points,
+                  warding_fp_points,
+                  warding_fgp_points,
+                  warding_hp_points,
+                  warding_jp_points,
+                  warding_lp_points];
 
     outline_param = key_lkup(outlines_k, outlines_v, outline_name);
     outline_points = outline_param[0];
@@ -126,5 +124,5 @@ module schlage_primus(bitting="",
 // Defaults
 bitting="";
 outline="6-pin";
-warding="C";
+warding="CP";
 schlage_primus(bitting, outline, warding);
