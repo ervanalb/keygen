@@ -13,6 +13,9 @@ SVG_SRC  = $(wildcard $(SVG_DIR)/*.svg)
 SCAD_SRC  = $(SCAD_DIR)/schlage_classic.scad \
             $(SCAD_DIR)/kwikset.scad \
             $(SCAD_DIR)/best.scad \
+            $(SCAD_DIR)/schlage_primus.scad \
+            $(SCAD_DIR)/medeco_classic.scad \
+            $(SCAD_DIR)/medeco_biaxial.scad \
 
 # Generated polygon files
 POLY_OBJ = $(patsubst $(SVG_DIR)/%.svg,$(POLY_DIR)/%.gen.scad,$(SVG_SRC))
