@@ -50,7 +50,7 @@ module medeco_classic(bitting="",
     cut_locations = [for(i=[0.244, 0.414, 0.584, 0.754, 0.924, 1.094]) i*25.4];
     depth_table = [for(i=[0.266+0.025:-0.025:0.115]) i*25.4];
     angles_k = ["L", "C", "R"];
-    angles_v = [-20, 0, 20];
+    angles_v = [20, 0, -20];
 
     bitting_depth = [for(i=[0:2:len(bitting)-1]) bitting[i]];
     bitting_angle = [for(i=[1:2:len(bitting)-1]) bitting[i]];
@@ -78,7 +78,7 @@ module medeco_classic(bitting="",
 }
 
 // Defaults
-bitting="";
+bitting="5L5L4R1C1R";
 outline="1515";
 warding="1515";
 medeco_classic(bitting, outline, warding);

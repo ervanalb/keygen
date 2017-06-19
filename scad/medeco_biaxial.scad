@@ -50,8 +50,8 @@ module medeco_biaxial(bitting="",
     cut_locations = [for(i=[0.244, 0.414, 0.584, 0.754, 0.924, 1.094]) i*25.4];
     depth_table = [for(i=[0.272+0.025:-0.025:0.141]) i*25.4];
     angles_k = ["K", "B", "Q", "M", "D", "S"];
-    angles_v = [[-20, -.7874], [0, -.7874], [20, -.7874],
-                [-20, .7874], [0, .7874], [20, .7874]];
+    angles_v = [[20, -.7874], [0, -.7874], [-20, -.7874],
+                [20, .7874],  [0, .7874],  [-20, .7874]];
 
     bitting_depth = [for(i=[0:2:len(bitting)-1]) bitting[i]];
     bitting_angle = [for(i=[1:2:len(bitting)-1]) bitting[i]];
