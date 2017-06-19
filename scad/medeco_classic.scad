@@ -9,6 +9,8 @@ module medeco_classic(bitting="",
     name = "Medeco Classic";
 
     /*
+        "A" variants of key outlines indicates 6-pin version.
+
         Bitting is specified from bow to tip, 1-6, with 1 being the shallowest cut and 6 being the deepest.
 
         After each number, a letter L, C, or R is specified for the cut angle: left, center or right.
@@ -22,7 +24,11 @@ module medeco_classic(bitting="",
                   "1517",
                   "1518",
                   "1542",
-                  "1543"];
+                  "1543",
+                  "A1638",
+                  "1638",
+                  "1644",
+                  "1655"];
     outlines_v = [[outline_a1515_points, outline_a1515_paths,
                    [-outline_a1515_points[52][0], -outline_a1515_points[52][1]],
                    engrave_a1515_points,
@@ -50,18 +56,41 @@ module medeco_classic(bitting="",
                   [outline_1543_points, outline_1543_paths,
                    [-outline_1543_points[48][0], -outline_1543_points[48][1]],
                    engrave_1543_points,
-                   engrave_1543_paths]];
+                   engrave_1543_paths],
+                  [outline_a1638_points, outline_a1638_paths,
+                   [-outline_a1638_points[64][0], -outline_a1638_points[68][1]],
+                   engrave_a1638_points,
+                   engrave_a1638_paths],
+                  [outline_1638_points, outline_1638_paths,
+                   [-outline_1638_points[64][0], -outline_1638_points[68][1]],
+                   engrave_1638_points,
+                   engrave_1638_paths],
+                  [outline_1644_points, outline_1644_paths,
+                   [-outline_1644_points[47][0], -outline_1644_points[43][1]],
+                   engrave_1644_points,
+                   engrave_1644_paths],
+                  [outline_1655_points, outline_1655_paths,
+                   [-outline_1655_points[48][0], -outline_1655_points[52][1]],
+                   engrave_1655_points,
+                   engrave_1655_paths]];
 
     wardings_k = ["1515",
                   "1517",
                   "1518",
                   "1542",
-                  "1543"];
+                  "1543",
+                  "1638",
+                  "1644",
+                  "1655"];
+
     wardings_v = [warding_1515_points,
                   warding_1517_points,
                   warding_1518_points,
                   warding_1542_points,
-                  warding_1543_points];
+                  warding_1543_points,
+                  warding_1638_points,
+                  warding_1644_points,
+                  warding_1655_points];
 
     outline_param = key_lkup(outlines_k, outlines_v, outline_name);
     outline_points = outline_param[0];
@@ -104,6 +133,6 @@ module medeco_classic(bitting="",
 
 // Defaults
 bitting="";
-outline="1515";
-warding="1515";
+outline="1638";
+warding="1638";
 medeco_classic(bitting, outline, warding);
