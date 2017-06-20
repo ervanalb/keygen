@@ -2,21 +2,24 @@
 <head>
 <title>keygen</title>
 <script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="three.min.js"></script>
+<script type="text/javascript" src="STLLoader.js"></script>
+<script type="text/javascript" src="3d_preview.js"></script>
 <script type="text/javascript" src="keygen.js"></script>
 </head>
 <body>
 <h1>keygen</h1>
-<form>
+<form id="key_form">
 <div>Type: <select id="key_type"></select></div>
 <div>Outline: <select id="key_outline"></select></div>
 <div>Warding: <select id="key_warding"></select></div>
 <div id="key_description"></div>
 <div>Bitting: <input id="key_bitting"></input></div>
-<input type="submit" value="Generate"></input>
+<input type="submit" value="Generate" id="generate_button"></input>
 </form>
 <div id="please_wait" style="display:none;">Please wait...</div>
 <div id="generated_key" style="display:none;">
-    <div id="key_preview"></div>
+    <div id="key_preview" style="width:200px; height:400px;"></div>
     <button id="key_download">Download</button>
 </div>
 </body>
