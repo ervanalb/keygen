@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>keygen</title>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="keygen.js"></script>
+</head>
+<body>
+<h1>keygen</h1>
+<form>
+<div>Type: <select id="key_type"></select></div>
+<div>Outline: <select id="key_outline"></select></div>
+<div>Warding: <select id="key_warding"></select></div>
+<div id="key_description"></div>
+<div>Bitting: <input id="key_bitting"></input></div>
+<input type="submit" value="Generate"></input>
+</form>
+<div id="please_wait" style="display:none;">Please wait...</div>
+<div id="generated_key" style="display:none;">
+    <div id="key_preview"></div>
+    <button id="key_download">Download</button>
+</div>
+</body>
+</html>
