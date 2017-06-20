@@ -7,6 +7,7 @@ import tempfile
 import subprocess
 import os
 import shutil
+import re
 
 PORT_NUMBER = 8080
 MAX_STR_LEN = 100
@@ -24,6 +25,14 @@ class MyHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b)
         else:
+            key_filename = query_components["key"][0]
+            if not re.match(r"scad/[A-Za-z0-9_]+.scad$", key_filename):
+                self.send_response(400)
+                self.send_header("Content-type", "text/plain; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(b"Bad filename")
+                return
+
             opts = [str(query_components["key"][0])]
             if "bitting" in query_components and len(query_components["bitting"]) == 1:
                 opts += ["-b", str(query_components["bitting"][0])[0:MAX_STR_LEN]]
@@ -40,15 +49,16 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.send_header("Content-type", "text/plain; charset=utf-8")
                     self.end_headers()
                     self.wfile.write(b"Command exited with non-zero return code")
-                else:
-                    length = os.stat(tf.name).st_size
-                    self.send_response(200)
-                    self.send_header("Content-type", "application/sla")
-                    self.send_header("Content-length", str(length))
-                    self.send_header("Content-Disposition", 'inline; filename="key.stl"')
-                    self.end_headers()
-                    with open(tf.name, 'rb') as stl:
-                        shutil.copyfileobj(stl, self.wfile)
+                    return
+
+                length = os.stat(tf.name).st_size
+                self.send_response(200)
+                self.send_header("Content-type", "application/sla")
+                self.send_header("Content-length", str(length))
+                self.send_header("Content-Disposition", 'inline; filename="key.stl"')
+                self.end_headers()
+                with open(tf.name, 'rb') as stl:
+                    shutil.copyfileobj(stl, self.wfile)
 
 class ForkingSimpleServer(ForkingMixIn, HTTPServer):
     pass
