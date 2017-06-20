@@ -12,7 +12,6 @@ function preview_load(data) {
     var centerX = 0.5 * (geometry.boundingBox.max.x + geometry.boundingBox.min.x);
     var centerY = 0.5 * (geometry.boundingBox.max.y + geometry.boundingBox.min.y);
     var centerZ = 0.5 * (geometry.boundingBox.max.z + geometry.boundingBox.min.z);
-    console.log(centerX, centerY, centerZ);
 
     var material = new THREE.MeshPhongMaterial( { color: 0x775500, specular: 0x111111, shininess: 200 } );
     var mesh = new THREE.Mesh( geometry, material );
@@ -59,7 +58,6 @@ function preview_init() {
     container.appendChild( renderer.domElement );
 
     window.addEventListener( 'resize', onWindowResize, false );
-    console.log("Init.");
 }
 
 function addShadowedLight( x, y, z, color, intensity ) {
@@ -101,7 +99,6 @@ function preview_animate() {
         requestAnimationFrame( preview_animate );
 
         render();
-        console.log("Animate.");
     }
 }
 

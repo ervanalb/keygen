@@ -65,6 +65,12 @@ function generate_key() {
             preview_load(key_stl);
             preview_animate();
             $("#generated_key").show();
+
+            var blob = new Blob([key_stl], {type: "application/sla"});
+            var objectUrl = URL.createObjectURL(blob);
+            var bitting = $("#key_bitting").val();
+            var filename = (bitting ? bitting : "keyblank") + ".stl";
+            $("#key_download").attr("href", objectUrl).attr("download", filename);
         } else {
             alert("An error occurred");
         }
