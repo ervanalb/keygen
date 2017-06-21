@@ -16,6 +16,7 @@ SCAD_SRC  = $(SCAD_DIR)/schlage_classic.scad \
             $(SCAD_DIR)/schlage_primus.scad \
             $(SCAD_DIR)/medeco_classic.scad \
             $(SCAD_DIR)/medeco_biaxial.scad \
+            $(SCAD_DIR)/master.scad \
 
 # Generated polygon files
 POLY_OBJ = $(patsubst $(SVG_DIR)/%.svg,$(POLY_DIR)/%.gen.scad,$(SVG_SRC))
