@@ -15,6 +15,7 @@ function populate_types() {
         if(key_metadata.length > 0) {
             $("#key_type").val(key_metadata[0].filename);
             populate_outlines_wardings();
+            handle_hash();
         }
     });
 }
@@ -54,6 +55,9 @@ function generate_key() {
         "bitting": $("#key_bitting").val(),
     });
 
+    var encoded = btoa([$("#key_type").val(), $("#key_outline").val(), $("#key_warding").val(), $("#key_bitting").val()].join("|"));
+    window.location.href = "#" + encoded;
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", keygen_endpoint + "?" + get_data, true);
     xhr.responseType = "arraybuffer";
@@ -90,6 +94,23 @@ function handle_hash() {
         $("#about").hide();
         $("#generator").show();
         $("#about_link").show();
+
+
+        $("#key_type").val(), $("#key_outline").val(), $("#key_warding").val(), $("#key_bitting").val()
+        var decoded = atob(window.location.hash.substr(1)).split("|");
+        if(decoded.length == 4) {
+            if($("#key_type").val() != decoded[0]
+            || $("#key_outline").val() != decoded[1]
+            || $("#key_warding").val() != decoded[2]
+            || $("#key_bitting").val() != decoded[3]) {
+                $("#key_type").val(decoded[0]);
+                populate_outlines_wardings();
+                $("#key_outline").val(decoded[1]);
+                $("#key_warding").val(decoded[2]);
+                $("#key_bitting").val(decoded[3]);
+                generate_key();
+            }
+        }
     }
 }
 
@@ -100,5 +121,4 @@ $(document).ready(function() {
 
     populate_types();
     preview_init();
-    handle_hash();
 });
