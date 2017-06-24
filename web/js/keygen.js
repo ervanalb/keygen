@@ -1,5 +1,3 @@
-keygen_endpoint = "http://localhost:8080"; // Change me to your serve.py endpoint
-
 var key_metadata;
 var key_stl;
 
