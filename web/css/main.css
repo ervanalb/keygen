@@ -1,0 +1,150 @@
+body {
+    margin:1em auto;
+    max-width:40em;
+    padding:0 .62em;
+    font:1.2em/1.62 sans-serif;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+a {
+    color: #e2bd00;
+}
+
+a:active {
+    color: #eeeeee;
+}
+
+a:visited {
+    color: #725f00;
+}
+
+#main {
+    background-color: #333333;
+    padding: 1em;
+    border-radius: 0.3em;
+    min-height: 25em;
+}
+
+#main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#nav {
+    margin-top: .3em;
+    float: right;
+}
+
+#nav p {
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    margin-bottom: .5em;
+    line-height: 1.2em;
+}
+
+h1 img {
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+    margin-right: 0.15em;
+    margin-bottom: 0.1em;
+}
+
+@media print{
+    body{
+        max-width:none
+    }
+}
+
+#description {
+    margin-top: 3em;
+}
+
+#description strong {
+    display: block;
+}
+
+#parameters {
+    display: block;
+    width:50%;
+    min-width: 15em;
+    float:left;
+}
+
+#key_form {
+    display: block;
+    margin: 1em;
+    max-width: 15em;
+}
+
+.field select, .field input {
+    background-color: #222222;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    font-size: 0.7em;
+    padding: 0.3em;
+}
+
+#key_description {
+    font-size: .7em;
+    margin-bottom: 1em;
+}
+
+.field {
+    margin-bottom: 1em;
+}
+
+.field_label {
+    text-transform: uppercase;
+    font-size: .7em;
+    color: #cccccc;
+}
+
+#result {
+    width:50%;
+    float:left;
+    text-align: center;
+}
+
+#generate_button {
+    display: block;
+    padding: 1em;
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #e2bd00;
+    font-weight: bold;
+    color: #333333;
+    border: none;
+    border-radius: 0.5em;
+}
+
+#generate_button:disabled {
+    background-color: #877a38;
+}
+
+#generate_button:active {
+    background-color: #bd9e00;
+}
+
+#please_wait {
+    margin-top: 5em;
+}
+
+#generated_key {
+}
+
+#key_preview {
+    margin: auto;
+    width: 10em;
+    height: 20em;
+    background-color: red;
+}
+
+#about {
+    font-size: 0.8em;
+}

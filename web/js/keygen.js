@@ -47,6 +47,7 @@ function populate_outlines_wardings() {
 function generate_key() {
     $("#generated_key").hide();
     $("#generate_button").prop("disabled", true);
+    $("#description").hide();
     $("#please_wait").show();
     get_data = $.param({
         "key": $("#key_type").val(),
@@ -81,10 +82,25 @@ function generate_key() {
     xhr.send();
 }
 
+function handle_hash() {
+    hash = window.location.hash;
+    if(hash == "#about") {
+        $("#generator").hide();
+        $("#about").show();
+        $("#about_link").hide();
+    } else {
+        $("#about").hide();
+        $("#generator").show();
+        $("#about_link").show();
+    }
+}
+
 $(document).ready(function() {
     $("#key_type").on("change", populate_outlines_wardings);
     $("#key_form").submit(function(e) {generate_key(); e.preventDefault();});
+    $(window).on('hashchange', handle_hash);
 
     populate_types();
     preview_init();
+    handle_hash();
 });

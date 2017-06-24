@@ -45,7 +45,7 @@ function preview_init() {
     // renderer
 
     renderer = new THREE.WebGLRenderer( { antialias: true } );
-    renderer.setClearColor( 0xFFFFFF );
+    renderer.setClearColor( 0x333333 );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( container.offsetWidth, container.offsetHeight );
 

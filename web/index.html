@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>keygen</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/three.min.js"></script>
+<script type="text/javascript" src="js/STLLoader.js"></script>
+<script type="text/javascript" src="js/3d_preview.js"></script>
+<script type="text/javascript" src="js/keygen.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div id="main">
+    <div id="nav">
+        <a href="#about" id="about_link">about</a>
+    </div>
+    <h1 id="title"><img src="img/logo_small.png"></img>keygen</h1>
+    <div id="content">
+        <div id="generator">
+            <div id="parameters">
+                <form id="key_form">
+                    <div class="field"><div class="field_label">Type</div><select id="key_type"></select></div>
+                    <div class="field"><div class="field_label">Outline</div><select id="key_outline"></select></div>
+                    <div class="field"><div class="field_label">Warding</div><select id="key_warding"></select></div>
+                    <div id="key_description"></div>
+                    <div class="field"><div class="field_label">Bitting</div><input id="key_bitting"></input></div>
+                    <input type="submit" value="Generate" id="generate_button"></input>
+                </form>
+            </div>
+            <div id="result">
+                <div id="description">
+                    <div>keygen generates</div>
+                    <div>working, high-quality</div>
+                    <strong>3D-printable models of keys</strong>
+                    <div>based on given parameters.</div>
+                    <p>Select a key type to get started.</p>
+                </div>
+                <div id="please_wait" style="display:none;">Please wait...</div>
+                <div id="generated_key" style="display:none;">
+                    <div id="key_preview"></div>
+                    <a id="key_download" href="#">Download STL</a>
+                </div>
+            </div>
+        </div>
+        <div id="about" style="display:none;">
+            <p>keygen generates working, high-quality 3D-printable models of keys based on given parameters.</p>
+            <p>To generate a key, select your key type and shapes. Then, follow the instructions on how to properly enter the bitting.</p>
+            <p>Click <strong>Download STL</strong> to save your key in a format suitable for 3D printing at e.g. <a href="https://shapeways.com">shapeways</a>.</p>
+            <p>This site is simply a web interface to <em>keygen</em>, a light wrapper around OpenSCAD. You can download and use this tool offline if you so desire.</p>
+            <p>If you need to generate a large number of keys, please download and run this tool locally. It eases load on the server, and will be faster and more flexible.</p>
+            <p>Contributions of key types and shapes are always welcome. Direct any comments or questions to <a href="https://github.com/ervanalb/keygen">the github project</a>.</p>
+            <p><em>~ervanalb</em></p>
+            <a href="#">close</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
