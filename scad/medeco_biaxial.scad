@@ -12,9 +12,9 @@ module medeco_biaxial(bitting="",
 
         Bitting is specified from bow to tip, 1-6, with 1 being the shallowest cut and 6 being the deepest.
 
-        Before each number, a letter K,B,Q,M,D,S is specified for the cut angle and offset.
+        After each number, a letter K,B,Q,M,D,S is specified for the cut angle and offset.
 
-        Example: K2B5Q3M6S3
+        Example: 2K5B3Q6M3S
     */
 
     outlines_k = ["A1515",
