@@ -74,7 +74,7 @@ module key_blank(outline_points,
                 engrave_depth=.1,
                 plug_diameter=0,
                 offset=[0, 0],
-                cutter_radius=18,
+                cutter_radius=0,
                 milling_offset=0) {
 
     // Find the bounding box of the warding
