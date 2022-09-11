@@ -1,5 +1,5 @@
 $inf=1000;
-$eps=.01;
+$eps=.001;
 
 function key_move(points, offset) = [
     for(p=points) [p[0] + offset[0],
@@ -31,13 +31,9 @@ module key_blade(warding, plug_diameter=0) {
 }
 
 module key_x_line(length) {
-    // Hack to draw a line in X
+    // Hack to draw something close to a line in X
     // since OpenSCAD does not support line primitives
-    // Take a 2D square and rotate it
-    // When it is orthogonal to the XY plane,
-    // it projects down to a line
-    rotate(90, [1, 0, 0])
-    square([length, length], center=true);
+    square([length, $eps], center=true);
 }
 
 module key_warding_cutter(warding, blade_height, cutter_radius, left) {
