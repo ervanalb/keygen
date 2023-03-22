@@ -4,9 +4,61 @@ Tools for generating physical keys.
 ![Key in Inkscape](doc/inkscape.png "SC4")
 ![Key in OpenSCAD](doc/key.png "152698")
 
-## How to use it
+# Installation
+Download the GitHub repository and extract the repository in the location you wish to use it.
+
+
+## Prerequisites
+
+Keygen requires OpenSCAD and Python to work properly. Both can be downloaded from their official websites.
+
+https://openscad.org/
+
+https://www.python.org/
+
+## Windows 
+Windows users will need to add OpenSCAD and python3 to the User Path; otherwise you will encounter errors. 
+
+OpenSCAD will install in "C:\Program Files\OpenSCAD" by default
+
+Add to Path:
+
 ```
-usage: keygen.py [-h] [-b BITTING] [-u OUTLINE] [-w WARDING] [-o OUTPUT]
+C:\Program Files\OpenSCAD
+```
+
+## Linux
+Linux installation is more straightforward, see OpenSCAD Installation Guide 
+
+### Fedora 
+```
+sudo dnf install python3
+```
+
+```
+sudo dnf install openscad
+```
+
+
+## How to use it
+The keygen.py file located in \keygen-master\bin will be your main method of interacting with keygen.
+
+Use the cd command to set your console's directory to keygen-master this will allow you to use the example commands as is.
+
+keygen-master is located in the download's folder.
+
+```
+cd Downloads\keygen-master\keygen-master
+```
+
+To enter the help menu shown below.
+
+```
+bin/keygen.py -h
+```
+
+```
+usage: keygen.py [-h] [scad/SCADFILE] [-b BITTING] [-u OUTLINE] [-w WARDING] [-o OUTPUT]
                  filename
 
 Generates keys.
@@ -28,13 +80,23 @@ optional arguments:
 All remaining arguments are passed to OpenSCAD.
 ```
 
-### Examples
+It is important to use the appropriate scad file with the key you are trying to generate, see examples below scad/kwikset.scad or scad/schlage_classic.scad. Do not use the files that have a .gen. In them, they are used for generating the keys in OpenSCAD.
 
-```bin/keygen.py scad/kwikset.scad --bitting 25536 -o housekey.stl```
+If you do not get an output file, open the scad file you are trying to use and make sure you are using the correct variables as they are different across the key types some experimentation is required.
 
-```bin/keygen.py scad/schlage_classic.scad -u 6-pin -w L -b 999999 -o all_section_bump_key.stl```
+## Examples
 
-```bin/keygen.py scad/schlage_classic.scad -o key.png --render```
+```
+python bin/keygen.py scad/kwikset.scad --bitting 25536 -o housekey.stl
+```
+
+```
+python bin/keygen.py scad/schlage_classic.scad -u 6-pin -w L -b 999999 -o all_section_bump_key.stl
+```
+
+```
+python bin/keygen.py scad/schlage_classic.scad -o key.png --render
+```
 
 ## Contributing
 
