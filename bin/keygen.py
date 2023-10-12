@@ -15,6 +15,8 @@ parser.add_argument("-u", "--outline", dest='outline',
                     help="Key blank outline")
 parser.add_argument("-w", "--warding", dest='warding',
                     help="Key warding")
+parser.add_argument("-s", "--series_name", dest='series_name',
+                    help="Key series_name")
 parser.add_argument("-o", "--output", dest='output', default="a.stl",
                     help="Output file (defaults to a.stl)")
 
@@ -32,6 +34,7 @@ if args.outline is not None:
     opts += ["-D", 'outline="{}"'.format(escape(args.outline))]
 if args.warding is not None:
     opts += ["-D", 'warding="{}"'.format(escape(args.warding))]
-
+if args.series_name is not None:
+    opts += ["-D", 'series_name="{}"'.format(escape(args.series_name))]
 r = subprocess.call([scad, args.filename, "-o", args.output] + opts + remaining)
 sys.exit(r)

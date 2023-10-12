@@ -1,7 +1,15 @@
 # Makefile for keygen
 
 # Executables
-POLY = PYTHONPATH=/usr/share/inkscape/extensions bin/paths2openscad.py
+ifdef OS
+	POLY = python3 bin/paths2openscad.py
+	RM = del /Q
+	FixPath = $(subst /,\,$1)
+else
+	RM = -rm -f
+	POLY = PYTHONPATH=/usr/share/inkscape/extensions bin/paths2openscad.py
+    FixPath = $1
+endif
 
 SCAD_DIR = scad
 SVG_DIR = resources
@@ -17,6 +25,7 @@ SCAD_SRC  = $(SCAD_DIR)/schlage_classic.scad \
             $(SCAD_DIR)/medeco_classic.scad \
             $(SCAD_DIR)/medeco_biaxial.scad \
             $(SCAD_DIR)/master.scad \
+            $(SCAD_DIR)/X103-KW12.scad \
 
 # Generated polygon files
 POLY_OBJ = $(patsubst $(SVG_DIR)/%.svg,$(POLY_DIR)/%.gen.scad,$(SVG_SRC))
@@ -30,10 +39,10 @@ POLYFLAGS  =
 all: $(JSON_DIR)/keys.json poly
 poly: $(POLY_OBJ)
 $(JSON_DIR)/%.json: $(SCAD_DIR)/%.scad
-	bin/parse.py $< $@
+	python3 bin/parse.py $< $@
 $(POLY_DIR)/%.gen.scad: $(SVG_DIR)/%.svg
 	$(POLY) $(POLYFLAGS) --fname $@ $<
 $(JSON_DIR)/keys.json: $(JSON_OBJ)
-	bin/json_merge.py $^ >$(JSON_DIR)/keys.json
+	python3 bin/json_merge.py $^ >$(JSON_DIR)/keys.json
 clean:
-	-rm -f $(POLY_DIR)/*.gen.scad $(JSON_DIR)/*.json
+	$(RM) $(call FixPath, $(POLY_DIR)/*.gen.scad $(JSON_DIR)/*.json)

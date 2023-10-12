@@ -450,8 +450,8 @@ class OpenSCAD( inkex.Effect ):
 
         # Determine which polys contain which
 
-        contains     = [ [] for i in xrange( len( path ) ) ]
-        contained_by = [ [] for i in xrange( len( path ) ) ]
+        contains     = [ [] for i in range( len( path ) ) ]
+        contained_by = [ [] for i in range( len( path ) ) ]
 
         for i in range( 0, len( path ) ):
             for j in range( i + 1, len( path ) ):
@@ -876,7 +876,9 @@ class OpenSCAD( inkex.Effect ):
             self.f.write( '\n' )
             for call in self.call_list:
                 self.f.write( call )
-
+            self.f.close()
+        
+        
         except IOError:
             inkex.errormsg( 'Unable to open the file ' + self.options.fname )
 
