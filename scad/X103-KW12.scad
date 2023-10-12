@@ -8,6 +8,7 @@ module X103_KW12(bitting="",
 
     name = "X103_KW12";
 
+     
     /*
         Bitting is specified from bow to tip, 0-4, with 0 being the shallowest cut and 1 being the deepest.
                    The 4th (5th?) entry in the depth table that seems way higher is the key I was trying to replicate seemed to skip the first cut location so I added that as a "Skip" value to use. 
@@ -16,11 +17,13 @@ module X103_KW12(bitting="",
         This model is for a Kawasaki Key sometimes called a X103 or a KA14 I think
         I pulled the outline and such from the motorcycle guide I have added and the main 2 depth and cut location tables from the Framon Key depth guide (v8) 
     */
+    outlines_k = ["X103"];
+    wardings_k = ["X103"];
                    
-    warding_min = min([for(e=warding_points) e[1]]);
-    warding_max = max([for(e=warding_points) e[1]]);
-    wardingHeight = warding_max-warding_min;
-    echo ("wardingHeight", wardingHeight);
+    wardingHeight_min = min([for(e=warding_points) e[1]]);
+    wardingHeight_max = max([for(e=warding_points) e[1]]);
+    wardingHeight = wardingHeight_max-wardingHeight_min;
+
     offset = [-outline_points[23][0], -outline_points[23][1]];
     depth_table= 
         series_name=="801-845"  ? [for(i=[.255, .235, .215, .195, 20]) i*25.4] :
@@ -34,10 +37,7 @@ module X103_KW12(bitting="",
     // Kwikset starts with 1??
 
     heights = key_code_to_heights(bitting, depth_table);
-    echo("series_name", series_name);
-    echo("bitting", bitting);
-    echo ("heights", heights);
-    echo ("heightsIN", [for(e=heights)e/25.4]);
+
     difference() 
     {
         if($children == 0) {

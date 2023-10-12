@@ -20,9 +20,10 @@ cut depths and locations.
 `key_blank` and `key_bitting` to generate a 3D model of your key.
 Use the provided OpenSCAD files as a template.
 Note you will want to set the offset to the point at the bottom key shoulder, If you don't know which one that is I used the commented out polygons at the bottom of the gen.scad file and randomly changing values and seeing which point moves and noting which one is that spot. The points will go in one direction around the shape so you can work your way around.   
-Also if you want to do double sided keys look at X103-KW12.scad there is a comment noting it.
+Also if you want to do double sided keys look at `X103-KW12.scad` there is a comment noting it.
 6. To add your key to the database,
 edit the `Makefile` to include your `.scad` file in the `SCAD_SRC` variable.
+To add to the Makefile be sure to set name in your module and make variables named outlines_k and wardings_k like the ones in the original `.scad` files
 
 For this to work, your final file must look like this:
 
