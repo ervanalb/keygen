@@ -7,7 +7,7 @@ ifdef OS
 	FixPath = $(subst /,\,$1)
 else
 	RM = -rm -f
-	POLY = PYTHONPATH=/usr/share/inkscape/extensions bin/paths2openscad.py
+	POLY = PYTHONPATH=/usr/share/inkscape/extensions python3 bin/paths2openscad.py
     FixPath = $1
 endif
 
