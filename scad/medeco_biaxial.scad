@@ -2,8 +2,8 @@ use <keygen.scad>
 include <medeco.scad>
 
 module medeco_biaxial(bitting="",
-                      outline_name="1515",
-                      warding_name="1515") {
+                      outline_name="",
+                      warding_name="") {
 
     name = "Medeco Biaxial";
 
@@ -12,7 +12,7 @@ module medeco_biaxial(bitting="",
 
         Bitting is specified from bow to tip, 1-6, with 1 being the shallowest cut and 6 being the deepest.
 
-        After each number, a letter K,B,Q,M,D,S is specified for the cut angle and offset.
+        After each number, a letter K,B,Q,L,C,R,M,D,S is specified for the cut angle and offset.
 
         Example: 2K5B3Q6M3S
     */
@@ -49,9 +49,10 @@ module medeco_biaxial(bitting="",
     
     cut_locations = [for(i=[0.244, 0.414, 0.584, 0.754, 0.924, 1.094]) i*25.4];
     depth_table = [for(i=[0.272+0.025:-0.025:0.141]) i*25.4];
-    angles_k = ["K", "B", "Q", "M", "D", "S"];
+    angles_k = ["K", "B", "Q", "M", "D", "S", "L", "C", "R"];
     angles_v = [[20, -.7874], [0, -.7874], [-20, -.7874],
-                [20, .7874],  [0, .7874],  [-20, .7874]];
+                [20, .7874],  [0, .7874],  [-20, .7874], 
+                [20, 0],      [0, 0],      [-20, 0]];
 
     bitting_depth = [for(i=[0:2:len(bitting)-1]) bitting[i]];
     bitting_angle = [for(i=[1:2:len(bitting)-1]) bitting[i]];
@@ -82,6 +83,7 @@ module medeco_biaxial(bitting="",
 
 // Defaults
 bitting="";
-outline="1515";
-warding="1515";
+outline="1518";
+warding="1518";
 medeco_biaxial(bitting, outline, warding);
+	
