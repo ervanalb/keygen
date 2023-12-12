@@ -15,6 +15,10 @@ module medeco_biaxial(bitting="",
         After each number, a letter K,B,Q,L,C,R,M,D,S is specified for the cut angle and offset.
 
         Example: 2K5B3Q6M3S
+        
+        Note: KBQ & MDS Biaxial cuts (Fore & Aft) do not appear to be used in conjunction with LCR Classic cuts(Centered)
+        
+        Example: 2K5B3Q6M3S or 2L5C3R6L3R
     */
 
     outlines_k = ["A1515",
@@ -48,7 +52,7 @@ module medeco_biaxial(bitting="",
     warding_points = key_lkup(wardings_k, wardings_v, warding_name);
     
     cut_locations = [for(i=[0.244, 0.414, 0.584, 0.754, 0.924, 1.094]) i*25.4];
-    depth_table = [for(i=[0.272+0.025:-0.025:0.141]) i*25.4];
+    depth_table = [for(i=[0.272+0.025:-0.025:0.146]) i*25.4];
     angles_k = ["K", "B", "Q", "M", "D", "S", "L", "C", "R"];
     angles_v = [[20, -.7874], [0, -.7874], [-20, -.7874],
                 [20, .7874],  [0, .7874],  [-20, .7874], 
