@@ -48,7 +48,7 @@ module medeco_classic(bitting="",
     warding_points = key_lkup(wardings_k, wardings_v, warding_name);
     
     cut_locations = [for(i=[0.244, 0.414, 0.584, 0.754, 0.924, 1.094]) i*25.4];
-    depth_table = [for(i=[0.266+0.025:-0.025:0.115]) i*25.4];
+    depth_table = [for(i=[0.266+0.030:-0.030:0.115]) i*25.4];
     angles_k = ["L", "C", "R"];
     angles_v = [20, 0, -20];
 
