@@ -10,7 +10,8 @@ outlines_k = ["A1515",
               "A1638",
               "1638",
               "1644",
-              "1655"];
+              "1655",
+              "M3"];
 
 outlines_v = [[outline_a1515_points, outline_a1515_paths,
                [-outline_a1515_points[52][0], -outline_a1515_points[52][1]],
@@ -55,7 +56,11 @@ outlines_v = [[outline_a1515_points, outline_a1515_paths,
               [outline_1655_points, outline_1655_paths,
                [-outline_1655_points[48][0], -outline_1655_points[52][1]],
                engrave_1655_points,
-               engrave_1655_paths]];
+               engrave_1655_paths],
+               [outline_M3_points, outline_M3_paths,
+               [-outline_M3_points[47][0], -outline_M3_points[43][1]],
+               engrave_M3_points,
+               engrave_M3_paths]];
 
 wardings_k = ["1515",
               "1517",
@@ -64,7 +69,8 @@ wardings_k = ["1515",
               "1543",
               "1638",
               "1644",
-              "1655"];
+              "1655",
+              "M3"];
 
 wardings_v = [warding_1515_points,
               warding_1517_points,
@@ -73,4 +79,5 @@ wardings_v = [warding_1515_points,
               warding_1543_points,
               warding_1638_points,
               warding_1644_points,
-              warding_1655_points];
+              warding_1655_points,
+              warding_M3_points];
